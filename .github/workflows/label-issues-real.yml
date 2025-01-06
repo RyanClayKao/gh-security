@@ -7,7 +7,7 @@ jobs:
   assign-label:
     # 針對 issue 開放 write 權限，不允許其他的權限
     permissions:
-      issues: read
+      issues: write
     runs-on: ubuntu-latest
     steps:
       - name: Assign label
