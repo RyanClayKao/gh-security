@@ -5,12 +5,14 @@ on:
       - opened
 jobs:
   assign-label:
+    # 針對 issue 開放 write 權限，不允許其他的權限
     permissions:
-      issues: write
+      issues: read
     runs-on: ubuntu-latest
     steps:
       - name: Assign label
         if: contains(github.event.issue.title, 'bug')
+        # 當使用 write 權限時，可以使用 GITHUB_TOKEN，這是 github 預設提供的 token，不需要額外設定
         run: |
           curl -X POST \
           --url https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels \
